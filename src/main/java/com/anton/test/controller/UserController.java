@@ -3,7 +3,6 @@ package com.anton.test.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +18,7 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping("create")
-	public ModelAndView form() {
+	public ModelAndView form(@ModelAttribute User user) {
 		return new ModelAndView("create");
 	}
 	
@@ -59,12 +58,37 @@ public class UserController {
 	@RequestMapping("search_user") 
 	public ModelAndView searchUser(@RequestParam String name) {
 		List<User> users = userService.searchUser(name);
+		System.out.println(users.size());
+		
+		for (User user : users) {
+			System.out.println(user.getName());
+			System.out.println(user.getAge());
+		}
 		
 		return new ModelAndView("search_list", "result", users);
 	}
 	
 	@RequestMapping("list")
 	public ModelAndView getAll() {
-		return new ModelAndView("list");//, "userList", userService.getAllUsers());
+		List<User> users = userService.getAllUsers();
+		
+		return new ModelAndView("list", "userList", userService.getAllUsers());
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

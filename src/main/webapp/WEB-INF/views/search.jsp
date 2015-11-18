@@ -4,9 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Search User</title>
 </head>
 <body>
+
+	<form method="post" action="search_user">
+		<input type="text" name="name" placeholder="Enter search name"/>
+		<input type="submit" value="Search" />
+	</form>
 
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.anton.test.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,12 @@ public class UserDaoImpl implements UserDao {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
 		
 		return criteria.list();
+/*        Session session = sessionFactory.openSession();
+
+        List<User> usersList = session.createQuery("select id,name,age,isAdmin,createdDate from user").list();
+        session.close();
+        return usersList;*/
+		
 	}
 
 	public int saveUser(User user) {
