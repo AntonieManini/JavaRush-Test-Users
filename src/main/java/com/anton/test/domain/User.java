@@ -1,16 +1,29 @@
 package com.anton.test.domain;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import javax.persistence.*;
 
+
+@Entity
+@Table(name="user")
 public class User {
+	@Id
+	@Column(name="id", length=8)
+	@GeneratedValue
 	private int id;
+	
+	@Column(name="name", length=25)
 	private String name;
+	
+	@Column
 	private int age;
-	private boolean isAdmin;
-	private Date createdDate;
+	
+	@Column
+	private Boolean isAdmin;
+	private Timestamp createdDate;
 	
 	
-	public User(String name, int age, boolean isAdmin, Date createdDate) {
+	public User(String name, int age, boolean isAdmin, Timestamp createdDate) {
 		this.name = name;
 		this.age = age;
 		this.isAdmin = isAdmin;
@@ -38,13 +51,13 @@ public class User {
 	public boolean isAdmin() {
 		return isAdmin;
 	}
-	public void setAdmin(boolean isAdmin) {
+	public void setAdmin(Boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
-	public Date getCreatedDate() {
+	public Timestamp getCreatedDate() {
 		return createdDate;
 	}
-	public void setCreatedDate(Date createdDate) {
+	public void setCreatedDate(Timestamp createdDate) {
 		this.createdDate = createdDate;
 	}	
 }
