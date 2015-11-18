@@ -18,9 +18,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	private PagedListHolder<User> users;
-	
-	
 	@RequestMapping("create")
 	public ModelAndView form() {
 		return new ModelAndView("create");
@@ -68,6 +65,6 @@ public class UserController {
 	
 	@RequestMapping("list")
 	public ModelAndView getAll() {
-		return new ModelAndView("list", "userList", userService.getAllUsers());
+		return new ModelAndView("list");//, "userList", userService.getAllUsers());
 	}
 }
