@@ -18,9 +18,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public List<User> getAllUsers(int page) {
-		if (userDao == null) System.out.println("No userDao");
-		else System.out.println("Yes userDao");
-		
 		return userDao.getAllUsers(page);
 	}
 

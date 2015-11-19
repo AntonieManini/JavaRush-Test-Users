@@ -27,7 +27,7 @@ public class UserDaoImpl implements UserDao {
 	public List<User> getAllUsers(int page) {		
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
 		criteria.setFirstResult((page-1) * 5);
-		criteria.setMaxResults(page * 5);
+		criteria.setMaxResults(5);
 		
 		return criteria.list();		
 	}

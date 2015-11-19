@@ -1,0 +1,15 @@
+body {
+	padding: 0;
+	padding-top: 150px;
+	margin: 0;
+}
+
+.pager {
+	display: inline;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+th {
+	text-align: center;
+}
