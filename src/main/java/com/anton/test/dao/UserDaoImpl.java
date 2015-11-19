@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,16 +24,16 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<User> getAllUsers() {		
+	public List<User> getAllUsers(int page) {		
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
+		criteria.setFirstResult((page-1) * 5);
+		criteria.setMaxResults(page * 5);
 		
-		return criteria.list();
-/*        Session session = sessionFactory.openSession();
-
-        List<User> usersList = session.createQuery("select id,name,age,isAdmin,createdDate from user").list();
-        session.close();
-        return usersList;*/
-		
+		return criteria.list();		
+	}
+	
+	public int getTotalNumberOfUsers() {
+		return ((Number)sessionFactory.getCurrentSession().createCriteria(User.class).setProjection(Projections.rowCount()).list().get(0)).intValue();
 	}
 
 	public int saveUser(User user) {

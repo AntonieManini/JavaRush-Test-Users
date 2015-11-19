@@ -45,17 +45,21 @@
 	</table>
 
 
-<!--	<c:choose>
-		<c:when test="">
+	<c:choose>
+		<c:when test="${page == pages}">
+			<a href="list?page=${page-1}"/>Prev. page</a>
+			<p>${page}</p>
 		</c:when>
+		<c:when test="${page == 1}">
+			<p>${page}</p>
+			<a href="list?page=${page+1}">Next page</a>		
+		</c:when>
+		<c:otherwise>
+			<a href="list?page=${page-1}"/>'">Prev. page</a>
+			<p>${page}</p>
+			<a href="list?page=${page+1}">Next page</a>		
+		</c:otherwise>
 	</c:choose>
-
-	
-	<c:if test="${page > 0}">
-		<a href="list?page=${page-1}"/>'">Prev. page</a>
-		<p>${page}</p>
-		<a href="list?page=${page+1}">Next page</a>
-	</c:if>-->
 
 </body>
 </html>

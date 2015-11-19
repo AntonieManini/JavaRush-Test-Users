@@ -58,22 +58,34 @@ public class UserController {
 	@RequestMapping("search_user") 
 	public ModelAndView searchUser(@RequestParam String name) {
 		List<User> users = userService.searchUser(name);
-		System.out.println(users.size());
-		
-		for (User user : users) {
-			System.out.println(user.getName());
-			System.out.println(user.getAge());
-		}
 		
 		return new ModelAndView("search_list", "result", users);
 	}
 	
 	@RequestMapping("list")
-	public ModelAndView getAll() {
-		List<User> users = userService.getAllUsers();
+	public ModelAndView getAll(@RequestParam(required=false, defaultValue="1") int page) {
+		int totalUsers = userService.countUsers();
 		
-		return new ModelAndView("list", "userList", userService.getAllUsers());
-	}
+		int pages = 0;
+		if (totalUsers % 5 == 0) {
+			pages = totalUsers / 5;
+		}
+		else {
+			pages = totalUsers / 5 + 1;
+		}
+		
+		ModelAndView modelAndView = new ModelAndView("list");
+		
+		if (page > 0 && page <= pages) {		
+			List<User> users = userService.getAllUsers(page);			
+			modelAndView.addObject("userList", users);
+			modelAndView.addObject("page", page);
+			modelAndView.addObject("pages", pages);
+		}
+
+		
+		return modelAndView;
+	}	
 }
 
 

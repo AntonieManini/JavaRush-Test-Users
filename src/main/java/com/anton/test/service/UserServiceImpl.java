@@ -17,11 +17,11 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUserById(id);
 	}
 
-	public List<User> getAllUsers() {
+	public List<User> getAllUsers(int page) {
 		if (userDao == null) System.out.println("No userDao");
 		else System.out.println("Yes userDao");
 		
-		return userDao.getAllUsers();
+		return userDao.getAllUsers(page);
 	}
 
 	public int saveUser(User user) {	
@@ -38,5 +38,9 @@ public class UserServiceImpl implements UserService {
 
 	public List<User> searchUser(String name) {
 		return userDao.searchUser(name);
+	}
+	
+	public int countUsers() {
+		return userDao.getTotalNumberOfUsers();
 	}
 }

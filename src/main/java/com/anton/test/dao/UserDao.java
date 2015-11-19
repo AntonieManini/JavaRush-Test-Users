@@ -8,7 +8,7 @@ public interface UserDao {
 	
 	User getUserById(int id);
 	
-	List<User> getAllUsers();
+	List<User> getAllUsers(int page);
 	
 	int saveUser(User user);
 	
@@ -17,4 +17,6 @@ public interface UserDao {
 	void deleteUser(int id);
 	
 	List<User> searchUser(String name);
+	
+	int getTotalNumberOfUsers();
 }
