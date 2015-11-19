@@ -3,7 +3,6 @@ package com.anton.test.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -57,5 +56,4 @@ public class UserDaoImpl implements UserDao {
 		
 		return criteria.list();
 	}
-
 }
